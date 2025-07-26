@@ -71,7 +71,12 @@ export function FinancialOverview({ data }: FinancialOverviewProps) {
                   className="w-2.5 h-2.5 rounded-full flex-shrink-0" 
                   style={{ backgroundColor: item.color }}
                 />
-                <span className="text-xs text-gray-700 font-medium">{item.name}</span>
+                <span 
+                  className="text-xs font-medium"
+                  style={{ color: item.color }}
+                >
+                  {item.name}
+                </span>
               </div>
               <div className="text-xs font-semibold text-gray-900">{item.value} MCFA</div>
             </div>
