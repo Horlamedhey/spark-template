@@ -18,9 +18,9 @@ export function DisbursementChart({ data }: DisbursementChartProps) {
     if (active && payload && payload.length) {
       return (
         <div className="bg-gray-800 text-white p-3 rounded-lg shadow-lg">
-          <p className="text-sm font-medium">{`15 Juin 2025`}</p>
-          <p className="text-xs">{`Approuvé: 15`}</p>
-          <p className="text-xs">{`Montant: 145A CFA`}</p>
+          <p className="text-xs font-medium">{`15 Juin 2025`}</p>
+          <p className="text-[10px] font-normal">{`Approuvé: 15`}</p>
+          <p className="text-[10px] font-normal">{`Montant: 145A CFA`}</p>
         </div>
       );
     }
@@ -30,34 +30,34 @@ export function DisbursementChart({ data }: DisbursementChartProps) {
   return (
     <Card className="p-6">
       <div className="flex items-center justify-between mb-6">
-        <h3 className="text-lg font-semibold">Chronogramme de décaissement</h3>
+        <h3 className="text-sm font-semibold">Chronogramme de décaissement</h3>
         <div className="w-8 h-8 bg-purple-100 rounded-full flex items-center justify-center">
-          <span className="text-purple-600 font-bold text-sm">V</span>
+          <span className="text-purple-600 font-semibold text-sm">V</span>
         </div>
       </div>
 
-      <div className="flex items-center gap-6 mb-4 text-sm">
+      <div className="flex items-center gap-6 mb-4 text-xs">
         <div className="flex items-center gap-2">
-          <div className="w-3 h-3 rounded-full bg-blue-400" />
-          <span>Planifié</span>
+          <div className="w-2.5 h-2.5 rounded-full bg-blue-400" />
+          <span className="font-normal">Planifié</span>
         </div>
         <div className="flex items-center gap-2">
-          <div className="w-3 h-3 rounded-full bg-orange-400" />
-          <span>Réel</span>
+          <div className="w-2.5 h-2.5 rounded-full bg-orange-400" />
+          <span className="font-normal">Réel</span>
         </div>
         <div className="flex items-center gap-2">
-          <div className="w-3 h-1 bg-yellow-500" />
-          <span>Cumulatif Prévu</span>
+          <div className="w-2.5 h-0.5 bg-yellow-500" />
+          <span className="font-normal">Cumulatif Prévu</span>
         </div>
         <div className="flex items-center gap-2">
-          <div className="w-3 h-1 bg-orange-500" />
-          <span>Cumulatif Réel</span>
+          <div className="w-2.5 h-0.5 bg-orange-500" />
+          <span className="font-normal">Cumulatif Réel</span>
         </div>
-        <div className="px-3 py-1 bg-blue-500 text-white rounded text-xs">
+        <div className="px-2 py-1 bg-blue-500 text-white rounded text-[10px] font-normal">
           Mois
         </div>
-        <span className="text-xs">Trimestre</span>
-        <span className="text-xs">Année</span>
+        <span className="text-[10px] font-normal">Trimestre</span>
+        <span className="text-[10px] font-normal">Année</span>
       </div>
 
       <div className="h-80">
@@ -67,12 +67,12 @@ export function DisbursementChart({ data }: DisbursementChartProps) {
               dataKey="month" 
               axisLine={false}
               tickLine={false}
-              tick={{ fontSize: 12, fill: '#6b7280' }}
+              tick={{ fontSize: 10, fill: '#6b7280' }}
             />
             <YAxis 
               axisLine={false}
               tickLine={false}
-              tick={{ fontSize: 12, fill: '#6b7280' }}
+              tick={{ fontSize: 10, fill: '#6b7280' }}
               tickFormatter={(value) => `${value/1000}K`}
             />
             <Tooltip content={<CustomTooltip />} />
@@ -84,16 +84,16 @@ export function DisbursementChart({ data }: DisbursementChartProps) {
               type="monotone" 
               dataKey="cumulativePlanned" 
               stroke="#eab308" 
-              strokeWidth={3}
-              dot={{ fill: '#eab308', strokeWidth: 2, r: 4 }}
+              strokeWidth={2}
+              dot={{ fill: '#eab308', strokeWidth: 1, r: 3 }}
               name="Cumulatif Prévu"
             />
             <Line 
               type="monotone" 
               dataKey="cumulativeActual" 
               stroke="#f97316" 
-              strokeWidth={3}
-              dot={{ fill: '#f97316', strokeWidth: 2, r: 4 }}
+              strokeWidth={2}
+              dot={{ fill: '#f97316', strokeWidth: 1, r: 3 }}
               name="Cumulatif Réel"
             />
           </ComposedChart>

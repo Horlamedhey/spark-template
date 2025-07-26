@@ -27,11 +27,11 @@ export function StatusCard({ title, value, icon, color }: StatusCardProps) {
     <Card className="p-6">
       <div className="flex items-center justify-between">
         <div>
-          <p className="text-sm text-muted-foreground mb-1">{title}</p>
-          <p className="text-2xl font-bold">{value}</p>
+          <p className="text-xs text-muted-foreground mb-1 font-normal">{title}</p>
+          <p className="text-xl font-semibold">{value}</p>
         </div>
         <div className={`p-3 rounded-lg ${colorClasses[color as keyof typeof colorClasses] || colorClasses.blue}`}>
-          <IconComponent size={24} />
+          <IconComponent size={20} />
         </div>
       </div>
     </Card>
