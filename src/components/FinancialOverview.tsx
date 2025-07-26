@@ -57,8 +57,8 @@ export function FinancialOverview({ data }: FinancialOverviewProps) {
           
           {/* Center Text */}
           <div className="absolute inset-0 flex flex-col items-center justify-center">
-            <div className="text-[10px] text-muted-foreground font-normal">Total</div>
-            <div className="text-sm font-semibold">{data.total}M</div>
+            <div className="text-[10px] text-gray-600 font-medium">Total</div>
+            <div className="text-sm font-bold text-gray-900">{data.total}M</div>
           </div>
         </div>
 
@@ -71,9 +71,9 @@ export function FinancialOverview({ data }: FinancialOverviewProps) {
                   className="w-2.5 h-2.5 rounded-full flex-shrink-0" 
                   style={{ backgroundColor: item.color }}
                 />
-                <span className="text-xs text-muted-foreground font-normal">{item.name}</span>
+                <span className="text-xs text-gray-700 font-medium">{item.name}</span>
               </div>
-              <div className="text-xs font-medium">{item.value} MCFA</div>
+              <div className="text-xs font-semibold text-gray-900">{item.value} MCFA</div>
             </div>
           ))}
         </div>
