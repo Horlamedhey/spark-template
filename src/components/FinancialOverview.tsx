@@ -1,5 +1,5 @@
 import { Card } from "@/components/ui/card";
-import { Cell, Pie, PieChart, ResponsiveContainer, Tooltip } from "recharts";
+import { PieChart, Pie, Cell, Tooltip, ResponsiveContainer } from "recharts";
 
 interface FinancialOverviewProps {
   data: {
@@ -14,8 +14,8 @@ interface FinancialOverviewProps {
 
 export function FinancialOverview({ data }: FinancialOverviewProps) {
   return (
-    <Card className="p-4">
-      <div className="flex items-center justify-start gap-4">
+    <Card className="p-6">
+      <div className="flex items-center justify-between gap-4">
         {/* Circular Progress Chart */}
         <div className="relative flex-shrink-0 w-28 h-28">
           <ResponsiveContainer
@@ -24,37 +24,12 @@ export function FinancialOverview({ data }: FinancialOverviewProps) {
           >
             <PieChart>
               <Pie
-                data={[{ value: 100 }]}
-                dataKey="value"
-                cx="50%"
-                cy="50%"
-                innerRadius={42}
-                outerRadius={48}
-                fill="#22c55e"
-                startAngle={90}
-                endAngle={-270}
-                stroke="none"
-                opacity={0.3}
-              />
-              <Pie
-                data={[{ value: 85 }]} // ~85% progress
-                dataKey="value"
-                cx="50%"
-                cy="50%"
-                innerRadius={42}
-                outerRadius={48}
-                fill="#22c55e"
-                startAngle={90}
-                endAngle={-225} // 90 - (360 * 0.85) = 90 - 306 = -216
-                stroke="none"
-              />
-              <Pie
                 data={data.breakdown}
                 cx="50%"
                 cy="50%"
-                innerRadius={28}
-                outerRadius={38}
-                paddingAngle={0}
+                innerRadius={35}
+                outerRadius={45}
+                paddingAngle={2}
                 dataKey="value"
                 stroke="none"
               >
@@ -65,10 +40,7 @@ export function FinancialOverview({ data }: FinancialOverviewProps) {
                   />
                 ))}
               </Pie>
-              <Tooltip
-                contentStyle={{ display: "none" }}
-                cursor={{ fill: "transparent" }}
-              />
+              <Tooltip />
             </PieChart>
           </ResponsiveContainer>
           <div className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none">
@@ -89,9 +61,11 @@ export function FinancialOverview({ data }: FinancialOverviewProps) {
                   className="w-2.5 h-2.5 rounded-full flex-shrink-0"
                   style={{ backgroundColor: item.color }}
                 />
-                <span className="text-sm">{item.name}</span>
+                <span className="text-xs font-medium text-muted-foreground">
+                  {item.name}
+                </span>
               </div>
-              <div className="text-sm font-semibold">{item.value} MCFA</div>
+              <div className="text-xs font-semibold">{item.value} MCFA</div>
             </div>
           ))}
         </div>

@@ -13,11 +13,13 @@ export const mockData = {
       title: "Status",
       value: "30%",
       icon: "building",
+      color: "blue",
     },
     {
       title: "Alertes",
       value: "15",
       icon: "warning",
+      color: "yellow",
     },
   ],
 
@@ -129,7 +131,7 @@ export const mockData = {
       status: "Restructuration effectuée",
       amount: "200 M FCFA",
       progress: 0,
-      statusColor: "orange",
+      statusColor: "violet",
     },
   ],
 

@@ -5,7 +5,6 @@ import { ProjectTimeline } from "@/components/ProjectTimeline";
 import { StatusCard } from "@/components/StatusCard";
 import { mockData } from "@/lib/mockData";
 import { TreeDeciduous } from "lucide-react";
-import { Cell, Pie, PieChart, ResponsiveContainer } from "recharts";
 import { Card } from "./components/ui/card";
 import { Progress } from "./components/ui/progress";
 import {
@@ -41,69 +40,19 @@ const EnvironmentalCategoryCard = ({ data }: { data: any }) => (
   </TooltipProvider>
 );
 
-const MissionsCard = ({ data }: { data: any }) => (
-  <Card className="p-4">
-    <div className="flex items-center justify-between">
-      <div>
-        <p className="mb-1 text-xs font-normal text-muted-foreground">
-          Missions
-        </p>
-        <p className="text-xl font-semibold">{data.total}</p>
-      </div>
-      <div className="w-10 h-10">
-        <ResponsiveContainer
-          width="100%"
-          height="100%"
-        >
-          <PieChart>
-            <Pie
-              data={data.breakdown}
-              dataKey="value"
-              innerRadius={8}
-              outerRadius={16}
-            >
-              {data.breakdown.map((entry: any, index: number) => (
-                <Cell
-                  key={`cell-${index}`}
-                  fill={entry.color}
-                  stroke={entry.color}
-                />
-              ))}
-            </Pie>
-          </PieChart>
-        </ResponsiveContainer>
-      </div>
-    </div>
-    <div className="flex items-center justify-between mt-2 text-xs">
-      {data.breakdown.map((item: any) => (
-        <div
-          key={item.name}
-          className="flex items-center gap-1"
-        >
-          <div
-            className="w-1.5 h-1.5 rounded-full"
-            style={{ backgroundColor: item.color }}
-          />
-          <span>{item.name}</span>
-          <span className="font-semibold">{item.value}</span>
-        </div>
-      ))}
-    </div>
-  </Card>
-);
-
 const ProjectListItem = ({ project }: { project: any }) => {
   const statusColorClasses: { [key: string]: string } = {
-    green: "border-green-500 text-green-500",
-    blue: "border-blue-500 text-blue-500",
-    gray: "border-gray-400 text-gray-400",
-    red: "border-red-500 text-red-500",
-    orange: "border-orange-500 text-orange-500",
+    green: "shadow-[0px_1px_2px_0px_#22C348,0px_0px_1px_0px_#22C348]",
+    blue: "shadow-[0px_1px_2px_0px_#2C7BE5,0px_0px_1px_0px_#2C7BE5]",
+    gray: "shadow-[0px_1px_2px_0px_#5B6871,0px_0px_1px_0px_#5B6871]",
+    red: "shadow-[0px_1px_2px_0px_#F2271C,0px_0px_1px_0px_#F2271C]",
+    violet: "shadow-[0px_1px_2px_0px_#A23FEE,0px_0px_1px_0px_#A23FEE]",
   };
 
   return (
+    // TODO: Remove the border later
     <Card
-      className={cn("p-4 border-l-4", statusColorClasses[project.statusColor])}
+      className={cn("p-4 border-none", statusColorClasses[project.statusColor])}
     >
       <div className="flex items-start justify-between">
         <div>
@@ -140,36 +89,41 @@ function App() {
   return (
     <div className="min-h-screen p-4 bg-gray-50 sm:p-6">
       <div className="max-w-[1600px] mx-auto">
-        <div className="grid grid-cols-1 gap-6 lg:grid-cols-12">
-          <div className="space-y-6 lg:col-span-9">
-            <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-12">
-              <div className="lg:col-span-4">
+        <div className="grid grid-cols-1 gap-5 lg:grid-cols-12">
+          <div className="space-y-6 lg:col-span-12 2xl:col-span-9">
+            {/* meeee */}
+            <div className="grid grid-cols-12 gap-4 lg:grid-cols-12 xl:grid-cols-7">
+              <div className="col-span-12 sm:col-span-8 lg:col-span-5 xl:col-span-2">
                 <FinancialOverview data={mockData.financial} />
               </div>
-              <div className="lg:col-span-8">
-                <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
-                  <StatusCard {...mockData.statusCards[0]} />
-                  <TooltipProvider>
-                    <Tooltip>
-                      <TooltipTrigger asChild>
-                        <div>
-                          <StatusCard {...mockData.statusCards[1]} />
-                        </div>
-                      </TooltipTrigger>
-                      <TooltipContent>
-                        <p>Moderate risks - localized, limited impacts</p>
-                      </TooltipContent>
-                    </Tooltip>
-                  </TooltipProvider>
-                  <EnvironmentalCategoryCard
-                    data={mockData.environmentalCategory}
-                  />
-                  <MissionsCard data={mockData.missions} />
-                </div>
+              <div className="col-span-6 sm:col-span-2 lg:col-span-2 xl:col-span-1">
+                <StatusCard {...mockData.statusCards[0]} />
+              </div>
+              <div className="col-span-6 sm:col-span-2 lg:col-span-2 xl:col-span-1">
+                <TooltipProvider>
+                  <Tooltip>
+                    <TooltipTrigger asChild>
+                      <div>
+                        <StatusCard {...mockData.statusCards[1]} />
+                      </div>
+                    </TooltipTrigger>
+                    <TooltipContent>
+                      <p>Moderate risks - localized, limited impacts</p>
+                    </TooltipContent>
+                  </Tooltip>
+                </TooltipProvider>
+              </div>
+              <div className="col-span-12 sm:col-span-4 lg:col-span-3 xl:col-span-1">
+                <EnvironmentalCategoryCard
+                  data={mockData.environmentalCategory}
+                />
+              </div>
+              <div className="col-span-12 sm:col-span-8 lg:col-span-5 xl:col-span-2">
+                <FinancialOverview data={mockData.missions} />
               </div>
             </div>
-
-            <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+            {/* meee end */}
+            <div className="grid grid-cols-1 gap-3 mt-10 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
               {mockData.projectList.map((project) => (
                 <ProjectListItem
                   key={project.id + project.type}
@@ -181,9 +135,13 @@ function App() {
             <DisbursementChart data={mockData.disbursementChart} />
           </div>
 
-          <div className="space-y-6 lg:col-span-3">
-            <ProcurementProgress data={mockData.procurementProgress} />
-            <ProjectTimeline data={mockData.timeline} />
+          <div className="grid-cols-7 gap-4 space-y-4 lg:grid lg:col-span-12 2xl:col-span-3 2xl:block">
+            <div className="order-last col-span-3 2xl:order-first">
+              <ProcurementProgress data={mockData.procurementProgress} />
+            </div>
+            <div className="col-span-4">
+              <ProjectTimeline data={mockData.timeline} />
+            </div>
           </div>
         </div>
       </div>
