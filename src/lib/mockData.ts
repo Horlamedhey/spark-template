@@ -4,30 +4,38 @@ export const mockData = {
     breakdown: [
       { name: "BOAD", value: 339, color: "#ef4444" },
       { name: "Autres financ.", value: 139, color: "#f97316" },
-      { name: "Partenaires", value: 139, color: "#22c55e" }
-    ]
+      { name: "Partenaires", value: 139, color: "#22c55e" },
+    ],
   },
-  
+
   statusCards: [
-    { 
-      title: "Status", 
-      value: "30%", 
-      icon: "calendar",
-      color: "blue"
+    {
+      title: "Status",
+      value: "30%",
+      icon: "building",
     },
-    { 
-      title: "Alertes", 
-      value: "15", 
+    {
+      title: "Alertes",
+      value: "15",
       icon: "warning",
-      color: "yellow"
     },
-    { 
-      title: "Processus en cours", 
-      value: "2", 
-      icon: "arrow-right",
-      color: "blue"
-    }
   ],
+
+  environmentalCategory: {
+    title: "Catégorie environementale",
+    value: "Catégorie B",
+    icon: "tree", // Custom icon
+    tooltip: "Moderate risks - localized, limited impacts",
+  },
+
+  missions: {
+    total: 5,
+    breakdown: [
+      { name: "Evaluation", value: 2, color: "#a855f7" },
+      { name: "Supervision", value: 4, color: "#f59e0b" },
+      { name: "Post-Evaluation", value: 1, color: "#8b5cf6" },
+    ],
+  },
 
   projectDetails: {
     amount: "200000",
@@ -37,97 +45,232 @@ export const mockData = {
     entryDateLimit: "01 Fev 2023",
     realEntryDate: "01 Fev 2023",
     drawDateLimit: "01 Fev 2024",
-    progress: 50
+    progress: 50,
   },
 
   procurementProgress: {
     title: "Passation des marchés",
     items: [
-      { name: "Appels d'offres", values: [15, 15, 30], colors: ["#22c55e", "#ef4444", "#f97316", "#22c55e"] },
-      { name: "Contrats", values: [40, 15, 20, 30], colors: ["#22c55e", "#ef4444", "#f97316", "#22c55e"] }
-    ]
+      {
+        name: "Appels d'offres",
+        values: [40, 15, 15, 30],
+        total: 100, // Sum of values
+        colors: ["#ef4444", "#f59e0b", "#3b82f6", "#22c55e"],
+      },
+      {
+        name: "Contrats",
+        values: [40, 15, 30, 30],
+        total: 115,
+        colors: ["#d1d5db", "#60a5fa", "#eab308", "#22c55e"],
+      },
+    ],
   },
+
+  projectList: [
+    {
+      id: "100001",
+      type: "Prêt / Banque",
+      status: "Authorisée",
+      amount: "200 M FCFA",
+      progress: 25,
+      statusColor: "green",
+    },
+    {
+      id: "200001",
+      type: "Étude / FAC",
+      status: "Confirmée",
+      amount: "200 M FCFA",
+      progress: 25,
+      statusColor: "blue",
+    },
+    {
+      id: "300001",
+      type: "PP / Banque",
+      status: "En Attente d'acceptation",
+      amount: "200 M FCFA",
+      progress: 25,
+      statusColor: "gray",
+    },
+    {
+      id: "400001",
+      type: "Arrangement",
+      status: "Arrêté",
+      amount: "200 M FCFA",
+      progress: 0,
+      statusColor: "red",
+    },
+    {
+      id: "100001",
+      type: "Prêt / Fond Vert",
+      status: "Authorisée",
+      amount: "200 M FCFA",
+      progress: 25,
+      statusColor: "green",
+    },
+    {
+      id: "600001",
+      type: "Garantie / Banque",
+      status: "Décaissé Complètement",
+      amount: "200 M FCFA",
+      progress: 25,
+      statusColor: "blue",
+    },
+    {
+      id: "900001",
+      type: "Don / FDC",
+      status: "Annulé",
+      amount: "200 M FCFA",
+      progress: 25,
+      statusColor: "red",
+    },
+    {
+      id: "500001",
+      type: "Conseil",
+      status: "Restructuration effectuée",
+      amount: "200 M FCFA",
+      progress: 0,
+      statusColor: "orange",
+    },
+  ],
 
   timeline: [
     {
       title: "Achevé",
-      subtitle: "Créé le 05 Juin 2025 par",
-      id: "324233",
-      status: "completed",
-      color: "#22c55e"
+      subtitle: "03 Feb 2025",
+      id: "1",
+      status: "achieved",
+      color: "#22c55e",
     },
     {
-      title: "En exécution",
-      subtitle: "Créé le 05 Avr 2025 par",
-      id: "324233",
-      status: "active",
-      color: "#3b82f6"
+      title: "Archivage",
+      subtitle: "02 Feb 2025",
+      id: "2",
+      status: "milestone",
+      color: "#3b82f6",
     },
     {
-      title: "Accord de prêt signé",
-      subtitle: "Créé le 02 Mai 2025 par",
-      id: "324233",
-      status: "completed",
-      color: "#3b82f6"
+      title: "Approbation RFE/BOAD",
+      subtitle: "13 Jan 2025",
+      id: "3",
+      status: "milestone",
+      color: "#3b82f6",
     },
     {
-      title: "Approuvé",
-      subtitle: "Créé le 20 Déc 2024 par",
-      id: "324233",
-      status: "completed",
-      color: "#3b82f6"
+      title: "Fin d'exécution",
+      subtitle: "23 Dec 2024 - 12 Jan 2025",
+      id: "4",
+      status: "end",
+      color: "#a5b4fc",
     },
     {
-      title: "En évaluation",
-      subtitle: "Créé le 12 Déc 2024 par",
-      id: "324233",
-      status: "pending",
-      color: "#6b7280"
+      title: "En Exécution",
+      subtitle: "02 Dec 2024",
+      id: "5",
+      status: "in_progress",
+      color: "#3b82f6",
     },
     {
-      title: "En portefeuille",
-      subtitle: "Créé le 12 Nov 2024 par",
-      id: "324233",
-      status: "pending",
-      color: "#6b7280"
+      title: "Dernier décaissement",
+      subtitle: "01 Dec 2024",
+      id: "6",
+      status: "milestone",
+      color: "#3b82f6",
     },
     {
-      title: "Admission en portefeuille",
-      subtitle: "Créé le 05 Avr 2022",
-      id: "Archivé le 10 Avr 2024 par 324233",
-      status: "archived",
-      color: "#6b7280"
+      title: "1 er décaissement",
+      subtitle: "11 Nov 2024",
+      id: "7",
+      status: "milestone",
+      color: "#3b82f6",
     },
-    {
-      title: "En identification",
-      subtitle: "Créé le 12 Oct 2023 par",
-      id: "324233",
-      status: "pending",
-      color: "#6b7280"
-    },
-    {
-      title: "Identification",
-      subtitle: "Créé le 05 Avr 2023",
-      id: "Archivé le 10 Avr 2024 par 324233",
-      status: "archived",
-      color: "#6b7280"
-    }
   ],
 
   disbursementChart: {
     data: [
-      { month: "Jan", planned: 10000, actual: 8000, cumulativePlanned: 10000, cumulativeActual: 8000 },
-      { month: "Fev", planned: 15000, actual: 12000, cumulativePlanned: 25000, cumulativeActual: 20000 },
-      { month: "Mars", planned: 20000, actual: 18000, cumulativePlanned: 45000, cumulativeActual: 38000 },
-      { month: "Avr", planned: 25000, actual: 22000, cumulativePlanned: 70000, cumulativeActual: 60000 },
-      { month: "Mai", planned: 30000, actual: 28000, cumulativePlanned: 100000, cumulativeActual: 88000 },
-      { month: "Juin", planned: 35000, actual: 32000, cumulativePlanned: 135000, cumulativeActual: 120000 },
-      { month: "Juil", planned: 40000, actual: null, cumulativePlanned: 175000, cumulativeActual: 120000 },
-      { month: "Aoû", planned: 45000, actual: null, cumulativePlanned: 220000, cumulativeActual: 120000 },
-      { month: "Sept", planned: 50000, actual: null, cumulativePlanned: 270000, cumulativeActual: 120000 },
-      { month: "Oct", planned: 55000, actual: null, cumulativePlanned: 325000, cumulativeActual: 120000 },
-      { month: "Nov", planned: 60000, actual: null, cumulativePlanned: 385000, cumulativeActual: 120000 },
-      { month: "Déc", planned: 65000, actual: null, cumulativePlanned: 450000, cumulativeActual: 120000 }
-    ]
-  }
+      {
+        month: "Jan",
+        planifie: 80000,
+        reel: null,
+        decaissements: 0,
+        autorisations: 0,
+      },
+      {
+        month: "Fev",
+        planifie: 40000,
+        reel: 30000,
+        decaissements: 30000,
+        autorisations: 40000,
+      },
+      {
+        month: "Mars",
+        planifie: 60000,
+        reel: 50000,
+        decaissements: 80000,
+        autorisations: 100000,
+      },
+      {
+        month: "Avr",
+        planifie: 0,
+        reel: 0,
+        decaissements: 80000,
+        autorisations: 100000,
+      },
+      {
+        month: "Mai",
+        planifie: 110000,
+        reel: 60000,
+        decaissements: 140000,
+        autorisations: 210000,
+      },
+      {
+        month: "Juin",
+        planifie: 0,
+        reel: 0,
+        decaissements: 140000,
+        autorisations: 210000,
+      },
+      {
+        month: "Juil",
+        planifie: 0,
+        reel: 0,
+        decaissements: 140000,
+        autorisations: 210000,
+      },
+      {
+        month: "Aoû",
+        planifie: 0,
+        reel: 0,
+        decaissements: 140000,
+        autorisations: 210000,
+      },
+      {
+        month: "Sept",
+        planifie: 0,
+        reel: 0,
+        decaissements: 140000,
+        autorisations: 210000,
+      },
+      {
+        month: "Oct",
+        planifie: 0,
+        reel: 0,
+        decaissements: 140000,
+        autorisations: 210000,
+      },
+      {
+        month: "Nov",
+        planifie: 0,
+        reel: 0,
+        decaissements: 140000,
+        autorisations: 210000,
+      },
+      {
+        month: "Déc",
+        planifie: 0,
+        reel: 0,
+        decaissements: 140000,
+        autorisations: 210000,
+      },
+    ],
+  },
 };

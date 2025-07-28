@@ -1,4 +1,5 @@
 import { Card } from "@/components/ui/card";
+import { Cell, Pie, PieChart, ResponsiveContainer, Tooltip } from "recharts";
 
 interface FinancialOverviewProps {
   data: {
@@ -12,73 +13,85 @@ interface FinancialOverviewProps {
 }
 
 export function FinancialOverview({ data }: FinancialOverviewProps) {
-  // Calculate percentages for the circular chart
-  const total = data.breakdown.reduce((sum, item) => sum + item.value, 0);
-  let cumulativePercentage = 0;
-
   return (
-    <Card className="p-6 h-fit">
-      <div className="flex items-center justify-between gap-4">
+    <Card className="p-4">
+      <div className="flex items-center justify-start gap-4">
         {/* Circular Progress Chart */}
-        <div className="relative w-24 h-24 flex-shrink-0">
-          <svg className="w-full h-full transform -rotate-90" viewBox="0 0 120 120">
-            <circle
-              cx="60"
-              cy="60"
-              r="50"
-              fill="none"
-              stroke="#f1f5f9"
-              strokeWidth="8"
-            />
-            {data.breakdown.map((item, index) => {
-              const percentage = (item.value / total) * 100;
-              const strokeDasharray = `${(percentage / 100) * 314.16} 314.16`;
-              const strokeDashoffset = -((cumulativePercentage / 100) * 314.16);
-              
-              const result = (
-                <circle
-                  key={index}
-                  cx="60"
-                  cy="60"
-                  r="50"
-                  fill="none"
-                  stroke={item.color}
-                  strokeWidth="8"
-                  strokeDasharray={strokeDasharray}
-                  strokeDashoffset={strokeDashoffset}
-                  strokeLinecap="round"
-                />
-              );
-              
-              cumulativePercentage += percentage;
-              return result;
-            })}
-          </svg>
-          
-          {/* Center Text */}
-          <div className="absolute inset-0 flex flex-col items-center justify-center">
-            <div className="text-[10px] text-gray-600 font-medium">Total</div>
-            <div className="text-sm font-bold text-gray-900">{data.total}M</div>
+        <div className="relative flex-shrink-0 w-28 h-28">
+          <ResponsiveContainer
+            width="100%"
+            height="100%"
+          >
+            <PieChart>
+              <Pie
+                data={[{ value: 100 }]}
+                dataKey="value"
+                cx="50%"
+                cy="50%"
+                innerRadius={42}
+                outerRadius={48}
+                fill="#22c55e"
+                startAngle={90}
+                endAngle={-270}
+                stroke="none"
+                opacity={0.3}
+              />
+              <Pie
+                data={[{ value: 85 }]} // ~85% progress
+                dataKey="value"
+                cx="50%"
+                cy="50%"
+                innerRadius={42}
+                outerRadius={48}
+                fill="#22c55e"
+                startAngle={90}
+                endAngle={-225} // 90 - (360 * 0.85) = 90 - 306 = -216
+                stroke="none"
+              />
+              <Pie
+                data={data.breakdown}
+                cx="50%"
+                cy="50%"
+                innerRadius={28}
+                outerRadius={38}
+                paddingAngle={0}
+                dataKey="value"
+                stroke="none"
+              >
+                {data.breakdown.map((entry, index) => (
+                  <Cell
+                    key={`cell-${index}`}
+                    fill={entry.color}
+                  />
+                ))}
+              </Pie>
+              <Tooltip
+                contentStyle={{ display: "none" }}
+                cursor={{ fill: "transparent" }}
+              />
+            </PieChart>
+          </ResponsiveContainer>
+          <div className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none">
+            <span className="text-xs text-muted-foreground">Total</span>
+            <span className="text-2xl font-bold">{data.total}M</span>
           </div>
         </div>
 
         {/* Legend */}
-        <div className="space-y-1.5 flex-1">
+        <div className="flex-1 space-y-2">
           {data.breakdown.map((item, index) => (
-            <div key={index} className="flex items-center justify-between">
+            <div
+              key={index}
+              className="flex items-center justify-between"
+            >
               <div className="flex items-center gap-2">
-                <div 
-                  className="w-2.5 h-2.5 rounded-full flex-shrink-0" 
+                <div
+                  className="w-2.5 h-2.5 rounded-full flex-shrink-0"
                   style={{ backgroundColor: item.color }}
                 />
-                <span 
-                  className="text-xs font-medium"
-                  style={{ color: item.color }}
-                >
-                  {item.name}
-                </span>
+                <span className="text-sm">{item.name}</span>
               </div>
-              <div className="text-xs font-semibold text-gray-900">{item.value} MCFA</div>
+              <div className="text-sm font-semibold">{item.value} MCFA</div>
             </div>
           ))}
         </div>
